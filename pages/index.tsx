@@ -23,6 +23,7 @@ const Home: NextPage = () => {
     const [status, setStatus] = useState("User Balance:")
     const [status1, setStatus1] = useState("Finish both transaction")
     const [isLoading, setIsLoading] = useState(false);
+    const [color,setColor] = useState("white");
 
     const { data,  } = useContractRead(contract, "checkUserBalance", addressBal)
 
@@ -67,7 +68,7 @@ const Home: NextPage = () => {
                               </Web3Button>
                                       )}
                          
-                              <span>{status1}</span>
+                              <span style={{ color: color}}>{status1}</span>
                           </div>
                           <div className={styles.card}>
                               <p>
@@ -133,6 +134,7 @@ const Home: NextPage = () => {
             ``
             console.log(e.reason);
             setStatus1(e.reason)
+            setColor("red")
             //console.error("contract call failure", err.reason);
         }
         setIsLoading(false);
